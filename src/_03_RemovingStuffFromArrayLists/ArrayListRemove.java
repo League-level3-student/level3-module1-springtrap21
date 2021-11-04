@@ -37,11 +37,11 @@ public class ArrayListRemove {
     // 2. Write a method that removes the hash tag ('#') characters from the
     //    ArrayList and returns it
     public static ArrayList<Character> removeHashTags(ArrayList<Character> list) {
-    	for(int i = 0; i < list.size();i++) {
+    	for(int i = list.size()-1; i >= 0;i++) {
     		Character c = list.get(i);
     		if (c == '#') {
-				list.remove(c);
-				i+=1;
+				list.remove(i);
+				
 			}
     	}
         return list;
