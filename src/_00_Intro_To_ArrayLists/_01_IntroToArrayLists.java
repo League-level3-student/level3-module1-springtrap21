@@ -34,7 +34,7 @@ public class _01_IntroToArrayLists {
     	}
         // 7. Print only the Strings that have the letter 'e' in them.
         for(int i = 0; i < bofa.size(); i++) {
-        	if (bofa == "e") {
+        	if (bofa.contains("e")) {
 				System.out.println(i);
 			}
         }

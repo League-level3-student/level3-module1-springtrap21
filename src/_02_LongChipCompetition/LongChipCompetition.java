@@ -3,6 +3,8 @@ package _02_LongChipCompetition;
 import java.util.ArrayList;
 import java.util.Random;
 
+import _01_MurderOfCrows.Crow;
+
 public class LongChipCompetition {
     /*
      * The Beatles are eating lunch and playing a game to see who has the
@@ -15,9 +17,21 @@ public class LongChipCompetition {
 
     public static void main(String[] args) {
         LongChipCompetition lcc = new LongChipCompetition();
-
+        lcc.initializeBeatles();
+        lcc.findLongestChip();
     }
 
+    void findLongestChip() {
+    	double longestChip = 0;
+    	for (Beatle beatle : theBeatles) {
+			for (Chip chips : beatle.getChips()) {
+				if (s.equals("diamond")) {
+					System.out.println(crowsKilled);
+					System.out.println(crow.getName());
+				}
+			}
+		}
+    }
     private void initializeBeatles() {
         Beatle george = new Beatle("George");
         Beatle john = new Beatle("John");
