@@ -2,6 +2,8 @@ package _07_California_Weather;
 
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 /*
  * OBJECTIVE:
  * 1. Create a program that allows the user to search for the weather
@@ -28,12 +30,39 @@ import java.util.HashMap;
  */
 
 public class CaliforniaWeather {
-    
-    void start() {
+	
+	void start() {
+		String input = JOptionPane.showInputDialog("Do you want to get a city's weather or ");
+		if (input.equals("City")) {
+			getCityWeather();
+		}
+		if (input.equals("Weather")) {
+			getWeatherCondition();
+		}
+	}
+	
+	void getWeatherCondition() {
+		String weather = JOptionPane.showInputDialog("Type in a weather condition to see wat cities have that weather");
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
         
         // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( "National City" );
+        for(String city : weatherData.keySet()) {  		
+    		System.out.println(city);
+    	}
+//        WeatherData datum = weatherData.get(cityName);
+//        if( datum == null ) {
+//            System.out.println("Unable to find weather data for: " + cityName);
+//        } else {
+//            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+//        }
+	}
+    
+    void getCityWeather() {
+    	String city = JOptionPane.showInputDialog("Type in a city to see it's weather");
+        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+        
+        // All city keys have the first letter capitalized of each word
+        String cityName = Utilities.capitalizeWords( city );
         WeatherData datum = weatherData.get(cityName);
         
         if( datum == null ) {
