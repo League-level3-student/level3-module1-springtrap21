@@ -1,5 +1,6 @@
 package _07_California_Weather;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ import javax.swing.JOptionPane;
 public class CaliforniaWeather {
 	
 	void start() {
-		String input = JOptionPane.showInputDialog("Do you want to get a city's weather or ");
+		String input = JOptionPane.showInputDialog("Do you want to get a City's Weather or see what cities have a specific Weather condition");
 		if (input.equals("City")) {
 			getCityWeather();
 		}
@@ -42,13 +43,17 @@ public class CaliforniaWeather {
 	}
 	
 	void getWeatherCondition() {
-		String weather = JOptionPane.showInputDialog("Type in a weather condition to see wat cities have that weather");
+		String weather = JOptionPane.showInputDialog("Type in a weather condition to see what cities have that weather");
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+        ArrayList <String> cities = new ArrayList<>();
         
         // All city keys have the first letter capitalized of each word
-        for(String city : weatherData.keySet()) {  		
-    		System.out.println(city);
+        for(String city : weatherData.keySet()) {
+    		if (weatherData.get(city).weatherSummary.equals(weather)) {
+				cities.add(city);
+			}
     	}
+        System.out.println(cities);
 //        WeatherData datum = weatherData.get(cityName);
 //        if( datum == null ) {
 //            System.out.println("Unable to find weather data for: " + cityName);
