@@ -33,12 +33,15 @@ import javax.swing.JOptionPane;
 public class CaliforniaWeather {
 	
 	void start() {
-		String input = JOptionPane.showInputDialog("Do you want to get a City's Weather or see what cities have a specific Weather condition");
+		String input = JOptionPane.showInputDialog("Do you want to get a City's Weather or see what cities have a specific Weather condition, or type in Tempature to find what cities are in a certain tempature range.");
 		if (input.equals("City")) {
 			getCityWeather();
 		}
 		if (input.equals("Weather")) {
 			getWeatherCondition();
+		}
+		if (input.equals("Tempature")) {
+			getCityTempature();
 		}
 	}
 	
@@ -61,7 +64,7 @@ public class CaliforniaWeather {
 //            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
 //        }
 	}
-    
+	
     void getCityWeather() {
     	String city = JOptionPane.showInputDialog("Type in a city to see it's weather");
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
@@ -75,5 +78,19 @@ public class CaliforniaWeather {
         } else {
             System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         }
+    }
+    
+    void getCityTempature() {
+    	int minTempature = Integer.parseInt(JOptionPane.showInputDialog("Type in a minmimum tempature"));
+    	int maxTempature = Integer.parseInt(JOptionPane.showInputDialog("Type in a maximum tempature"));
+    	HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+    	ArrayList <String> cities = new ArrayList();
+    	for(String city : weatherData.keySet()) {
+    		if (weatherData.get(city).temperatureF < maxTempature && weatherData.get(city).temperatureF > minTempature) {
+				cities.add(city);
+				
+			}
+    	}
+    	System.out.println(cities);
     }
 }
