@@ -2,11 +2,13 @@ package _08_World_Clocks;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -35,6 +37,7 @@ import javax.swing.Timer;
  */
 
 public class WorldClocks implements ActionListener {
+	ArrayList <ClockComponets> cc = new ArrayList<ClockComponets>();
     ClockUtilities clockUtil;
     Timer timer;
     TimeZone timeZone;
@@ -51,7 +54,16 @@ public class WorldClocks implements ActionListener {
         clockUtil = new ClockUtilities();
 
         // The format for the city must be: city, country (all caps)
-        city = "Chicago, US";
+        while (true) {
+        	String usersCity = JOptionPane.showInputDialog("Type in a city(Type this city with the first letter capitalized, and after you type the city click space and type an abriviation of it's country in all caps.)");
+			new JTextArea();
+        	if (usersCity == "stop") {
+				break;
+			}
+		
+        
+        city = usersCity;
+        //city = "Chicago, US";
         timeZone = clockUtil.getTimeZoneFromCityName(city);
         
         Calendar calendar = Calendar.getInstance(timeZone);
@@ -77,7 +89,7 @@ public class WorldClocks implements ActionListener {
         timer = new Timer(1000, this);
         timer.start();
     }
-
+    }
     @Override
     public void actionPerformed(ActionEvent arg0) {
         Calendar c = Calendar.getInstance(timeZone);
@@ -89,5 +101,5 @@ public class WorldClocks implements ActionListener {
         textArea.setText(city + "\n" + dateStr + "\n" + timeStr);
         frame.pack();
     }
-    
+  
 }
