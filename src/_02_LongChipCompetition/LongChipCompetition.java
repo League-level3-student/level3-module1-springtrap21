@@ -3,7 +3,6 @@ package _02_LongChipCompetition;
 import java.util.ArrayList;
 import java.util.Random;
 
-import _01_MurderOfCrows.Crow;
 
 public class LongChipCompetition {
     /*
@@ -25,13 +24,13 @@ public class LongChipCompetition {
     	double longestChip = 0;
     	for (Beatle beatle : theBeatles) {
 			for (Chip chips : beatle.getChips()) {
-				if (s.equals("diamond")) {
-					System.out.println(crowsKilled);
-					System.out.println(crow.getName());
+				if (longestChip == 0) {
+				System.out.println(chips);
+				System.out.println(beatle.getName());
 				}
 			}
 		}
-    }
+   }
     private void initializeBeatles() {
         Beatle george = new Beatle("George");
         Beatle john = new Beatle("John");

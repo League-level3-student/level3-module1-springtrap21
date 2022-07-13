@@ -52,12 +52,17 @@ public class WorldClocks implements ActionListener {
     
     public WorldClocks() {
         clockUtil = new ClockUtilities();
-
+        frame = new JFrame();
+        panel = new JPanel();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setSize(100, 100);
+        frame.add(panel);
         // The format for the city must be: city, country (all caps)
         while (true) {
-        	String usersCity = JOptionPane.showInputDialog("Type in a city(Type this city with the first letter capitalized, and after you type the city click space and type an abriviation of it's country in all caps.)");
-			new JTextArea();
-        	if (usersCity == "stop") {
+        	String usersCity = JOptionPane.showInputDialog("Type in a city then add a comma and add the abreviation of it's country. Type in \"stop\" to end the program.");
+			
+        	if (usersCity.equals("stop")) {
 				break;
 			}
 		
@@ -74,13 +79,7 @@ public class WorldClocks implements ActionListener {
         System.out.println(dateStr);
 
         // Sample starter program
-        frame = new JFrame();
-        panel = new JPanel();
         textArea = new JTextArea();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setSize(100, 100);
-        frame.add(panel);
         panel.add(textArea);
         textArea.setText(city + "\n" + dateStr);
         
