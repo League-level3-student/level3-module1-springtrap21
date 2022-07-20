@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,8 +20,7 @@ public class GameBoard extends JFrame implements ActionListener {
     
     // 1. Initialize TOTAL_CARDS to 2;
     static int TOTAL_CARDS = 52;
-    static int TOTAL_SUITS = 4;
-    
+    static int TOTAL_SUITS = 4; 
     ArrayList<Card> cards;
     
     JPanel panel;
@@ -57,6 +55,18 @@ public class GameBoard extends JFrame implements ActionListener {
     			cards.add(c);
 			}
 		}
+        int cardValue = 2;
+        for (int i = 0; i < TOTAL_CARDS/4; i++) {
+        	
+			for (int j = 0; j < TOTAL_CARDS/13; j++) {
+				Card c = new Card(cardValue);
+				c.addActionListener(this);
+				cards.add(c);
+				
+			}
+			cardValue ++;
+		}
+                
         // 4. Use Collections.shuffle() method to randomize the order of
         //    the cards in the ArrayList
         Collections.shuffle(cards);
@@ -65,9 +75,10 @@ public class GameBoard extends JFrame implements ActionListener {
         panel = new JPanel();
         
         // 6. Add all of the Card objects to the panel
-        for (Iterator iterator = cards.iterator(); iterator.hasNext();) {
-			Card card = (Card) iterator.next();
-			panel.add(card);
+
+        for (int i = 0; i < cards.size(); i++) {
+        	Card c = cards.get(i);
+			panel.add(c);
 		}
         
         // 7. Call the setupGui() method to set up the frame
@@ -80,11 +91,13 @@ public class GameBoard extends JFrame implements ActionListener {
     // 9. Fill in the drawCards method to draw all the cards in the ArrayList.
     //    Run your code and verify 2 cards are displayed and the game works.
     public void drawCards() {
-        for (Iterator iterator = cards.iterator(); iterator.hasNext();) {
-			Card card = (Card) iterator.next();
-			card.draw();
-		}
-    }
+        for (int i = 0; i < cards.size(); i++) {
+        	// cards.get(i).draw();
+			Card c = cards.get(i);
+			c.draw();
+			
+        }
+	}
     
     // 10. 
     // There are 52 cards in a normal sized deck of cards (not counting
